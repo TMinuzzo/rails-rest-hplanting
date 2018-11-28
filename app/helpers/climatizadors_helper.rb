@@ -1,0 +1,2 @@
+module ClimatizadorsHelper
+end

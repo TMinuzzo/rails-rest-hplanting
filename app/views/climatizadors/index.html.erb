@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Climatizadors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Temperatura</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @climatizadors.each do |climatizador| %>
+      <tr>
+        <td><%= climatizador.temperatura %></td>
+        <td><%= link_to 'Show', climatizador %></td>
+        <td><%= link_to 'Edit', edit_climatizador_path(climatizador) %></td>
+        <td><%= link_to 'Destroy', climatizador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Climatizador', new_climatizador_path %>

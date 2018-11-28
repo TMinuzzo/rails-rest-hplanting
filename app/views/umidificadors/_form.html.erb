@@ -1,0 +1,21 @@
+<%= form_for(@umidificador) do |f| %>
+  <% if @umidificador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@umidificador.errors.count, "error") %> prohibited this umidificador from being saved:</h2>
+
+      <ul>
+      <% @umidificador.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :umidade %><br>
+    <%= f.text_field :umidade %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

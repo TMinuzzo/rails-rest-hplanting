@@ -1,0 +1,21 @@
+<%= form_for(@climatizador) do |f| %>
+  <% if @climatizador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@climatizador.errors.count, "error") %> prohibited this climatizador from being saved:</h2>
+
+      <ul>
+      <% @climatizador.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :temperatura %><br>
+    <%= f.text_field :temperatura %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

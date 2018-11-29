@@ -1,6 +1,8 @@
 class ClimatizadorsController < ApplicationController
   before_action :set_climatizador, only: [:show, :edit, :update, :destroy]
 
+  skip_before_action :verify_authenticity_token
+
   # GET /climatizadors
   # GET /climatizadors.json
   def index
@@ -50,6 +52,7 @@ class ClimatizadorsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /climatizadors/1
   # DELETE /climatizadors/1.json

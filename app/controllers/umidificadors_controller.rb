@@ -1,5 +1,6 @@
 class UmidificadorsController < ApplicationController
   before_action :set_umidificador, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /umidificadors
   # GET /umidificadors.json

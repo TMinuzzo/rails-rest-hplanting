@@ -1,7 +1,7 @@
 class RelatoriosController < ApplicationController
   before_action :set_relatorio, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-
+  
   # GET /relatorios
   # GET /relatorios.json
   def index
@@ -70,6 +70,6 @@ class RelatoriosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def relatorio_params
-      params.require(:relatorio).permit(:climatizador, :umidificador, :time)
+      params.fetch(:relatorio, {})
     end
 end

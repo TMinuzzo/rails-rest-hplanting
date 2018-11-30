@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Relatorios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @relatorios.each do |relatorio| %>
+      <tr>
+        <td><%= link_to 'Show', relatorio %></td>
+        <td><%= link_to 'Edit', edit_relatorio_path(relatorio) %></td>
+        <td><%= link_to 'Destroy', relatorio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Relatorio', new_relatorio_path %>

@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Umidade</th>
+      <th>Historico</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @umidificadors.each do |umidificador| %>
       <tr>
         <td><%= umidificador.umidade %></td>
+        <td><%= umidificador.historico %></td>
         <td><%= link_to 'Show', umidificador %></td>
         <td><%= link_to 'Edit', edit_umidificador_path(umidificador) %></td>
         <td><%= link_to 'Destroy', umidificador, method: :delete, data: { confirm: 'Are you sure?' } %></td>

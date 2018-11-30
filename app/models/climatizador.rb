@@ -1,3 +1,3 @@
 class Climatizador < ActiveRecord::Base
-    has_many :relatorio
+    has_one :relatorio
 end

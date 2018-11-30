@@ -18,7 +18,7 @@ class UmidificadorsControllerTest < ActionController::TestCase
 
   test "should create umidificador" do
     assert_difference('Umidificador.count') do
-      post :create, umidificador: { umidade: @umidificador.umidade }
+      post :create, umidificador: { historico: @umidificador.historico, umidade: @umidificador.umidade }
     end
 
     assert_redirected_to umidificador_path(assigns(:umidificador))
@@ -35,7 +35,7 @@ class UmidificadorsControllerTest < ActionController::TestCase
   end
 
   test "should update umidificador" do
-    patch :update, id: @umidificador, umidificador: { umidade: @umidificador.umidade }
+    patch :update, id: @umidificador, umidificador: { historico: @umidificador.historico, umidade: @umidificador.umidade }
     assert_redirected_to umidificador_path(assigns(:umidificador))
   end
 

@@ -1,0 +1,17 @@
+<%= form_for(@relatorio) do |f| %>
+  <% if @relatorio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@relatorio.errors.count, "error") %> prohibited this relatorio from being saved:</h2>
+
+      <ul>
+      <% @relatorio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

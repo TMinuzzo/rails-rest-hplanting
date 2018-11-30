@@ -2,6 +2,8 @@
 
 one:
   umidade: 1.5
+  historico: MyText
 
 two:
   umidade: 1.5
+  historico: MyText

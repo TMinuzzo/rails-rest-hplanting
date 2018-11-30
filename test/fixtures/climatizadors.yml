@@ -2,6 +2,8 @@
 
 one:
   temperatura: 1.5
+  historico: MyText
 
 two:
   temperatura: 1.5
+  historico: MyText

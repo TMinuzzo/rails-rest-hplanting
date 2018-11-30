@@ -1,6 +1,5 @@
 class ClimatizadorsController < ApplicationController
   before_action :set_climatizador, only: [:show, :edit, :update, :destroy]
-
   skip_before_action :verify_authenticity_token
 
   # GET /climatizadors
@@ -30,6 +29,13 @@ class ClimatizadorsController < ApplicationController
 
     respond_to do |format|
       if @climatizador.save
+
+        @data = Time.at(@climatizador[:created_at]).to_datetime
+        @novo_registro = "{" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << " => " << @climatizador[:temperatura].to_s << "}"
+        puts @novo_registro
+        @climatizador[:historico] = @novo_registro
+        @climatizador.save
+
         format.html { redirect_to @climatizador, notice: 'Climatizador was successfully created.' }
         format.json { render :show, status: :created, location: @climatizador }
       else
@@ -44,6 +50,19 @@ class ClimatizadorsController < ApplicationController
   def update
     respond_to do |format|
       if @climatizador.update(climatizador_params)
+
+        @data = Time.at(@climatizador[:updated_at]).to_datetime
+        @novo_registro = "{" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << " => " << @climatizador[:temperatura].to_s << "}"
+
+        @historico = @climatizador[:historico]
+        @historico = @historico + "," + @novo_registro
+
+        puts @historico
+
+       # @climatizador[:historico] = @historico
+#       @params = {:historico}
+        @climatizador.update_attribute(:historico , @historico)
+
         format.html { redirect_to @climatizador, notice: 'Climatizador was successfully updated.' }
         format.json { render :show, status: :ok, location: @climatizador }
       else
@@ -52,7 +71,6 @@ class ClimatizadorsController < ApplicationController
       end
     end
   end
-
 
   # DELETE /climatizadors/1
   # DELETE /climatizadors/1.json
@@ -72,6 +90,6 @@ class ClimatizadorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def climatizador_params
-      params.require(:climatizador).permit(:temperatura)
+      params.require(:climatizador).permit(:temperatura, :historico)
     end
 end

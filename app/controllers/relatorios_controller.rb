@@ -62,6 +62,25 @@ class RelatoriosController < ApplicationController
     end
   end
 
+  def monta_relatorio
+
+		@climatizador = Climatizador.find(params[:usuario_id])
+		@umidificador = Umidificador.find(params[:usuario_id])
+    puts "ENTROU NO MONTA RELATORIO"
+    @climatizador_relatorio = ""
+    @umidificador_relatorio = ""
+    if @climatizador
+		  @climatizador_relatorio = "\"climatizador\":" << "[" << @climatizador[:historico] << "]"
+		end
+    if @umidificador
+      @umidificador_relatorio = "\"umidificador\":" << "[" << @umidificador[:historico] << "]"
+    end
+		@relatorio_total = "{" << @climatizador_relatorio << "," << @umidificador_relatorio < "}"
+
+    render json: @relatorio_total
+		return @relatorio_total
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_relatorio

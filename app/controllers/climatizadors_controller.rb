@@ -31,9 +31,11 @@ class ClimatizadorsController < ApplicationController
       if @climatizador.save
 
         @data = Time.at(@climatizador[:created_at]).to_datetime
-        @novo_registro = "{" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << " => " << @climatizador[:temperatura].to_s << "}"
-        puts @novo_registro
-        @climatizador[:historico] = @novo_registro
+        @data_str = "\"data\":"  << "\"" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << "\""
+        @temperatura_str = "\"temperatura\":" << @climatizador[:temperatura].to_s
+        @novo_registro = "{" << @data_str << "," << @temperatura_str << "}"
+        
+        @climatizador[:historico] << @novo_registro
         @climatizador.save
 
         format.html { redirect_to @climatizador, notice: 'Climatizador was successfully created.' }
@@ -52,15 +54,13 @@ class ClimatizadorsController < ApplicationController
       if @climatizador.update(climatizador_params)
 
         @data = Time.at(@climatizador[:updated_at]).to_datetime
-        @novo_registro = "{" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << " => " << @climatizador[:temperatura].to_s << "}"
+        @data_str = "\"data\":"  << "\"" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << "\""
+        @temperatura_str = "\"temperatura\":" << @climatizador[:temperatura].to_s
+        @novo_registro = "{" << @data_str << "," << @temperatura_str << "}"
 
         @historico = @climatizador[:historico]
         @historico = @historico + "," + @novo_registro
-
-        puts @historico
-
-       # @climatizador[:historico] = @historico
-#       @params = {:historico}
+        
         @climatizador.update_attribute(:historico , @historico)
 
         format.html { redirect_to @climatizador, notice: 'Climatizador was successfully updated.' }

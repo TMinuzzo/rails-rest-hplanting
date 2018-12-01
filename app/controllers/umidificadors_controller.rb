@@ -29,6 +29,15 @@ class UmidificadorsController < ApplicationController
 
     respond_to do |format|
       if @umidificador.save
+
+        @data = Time.at(@umidificador[:created_at]).to_datetime
+        @data_str = "\"data\":"  << "\"" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << "\""
+        @umidate_str = "\"umidade\":" << @umidificador[:umidade].to_s
+        @novo_registro = "{" << @data_str << "," << @umidate_str << "}"
+        
+        @umidificador[:historico] << @novo_registro
+        @umidificador.save
+
         format.html { redirect_to @umidificador, notice: 'Umidificador was successfully created.' }
         format.json { render :show, status: :created, location: @umidificador }
       else
@@ -43,6 +52,17 @@ class UmidificadorsController < ApplicationController
   def update
     respond_to do |format|
       if @umidificador.update(umidificador_params)
+
+        @data = Time.at(@umidificador[:updated_at]).to_datetime
+        @data_str = "\"data\":"  << "\"" << @data.utc.strftime('%m/%d/%Y %H:%M %p')  << "\""
+        @umidate_str = "\"umidade\":" << @umidificador[:umidade].to_s
+        @novo_registro = "{" << @data_str << "," << @umidate_str << "}"
+
+        @historico = @umidificador[:historico]
+        @historico = @historico + "," + @novo_registro
+
+        @umidificador.update_attribute(:historico , @historico)
+
         format.html { redirect_to @umidificador, notice: 'Umidificador was successfully updated.' }
         format.json { render :show, status: :ok, location: @umidificador }
       else

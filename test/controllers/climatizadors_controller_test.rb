@@ -18,7 +18,7 @@ class ClimatizadorsControllerTest < ActionController::TestCase
 
   test "should create climatizador" do
     assert_difference('Climatizador.count') do
-      post :create, climatizador: { historico: @climatizador.historico, temperatura: @climatizador.temperatura }
+      post :create, climatizador: { historico: @climatizador.historico, temperatura: @climatizador.temperatura, usuario_id: @climatizador.usuario_id }
     end
 
     assert_redirected_to climatizador_path(assigns(:climatizador))
@@ -35,7 +35,7 @@ class ClimatizadorsControllerTest < ActionController::TestCase
   end
 
   test "should update climatizador" do
-    patch :update, id: @climatizador, climatizador: { historico: @climatizador.historico, temperatura: @climatizador.temperatura }
+    patch :update, id: @climatizador, climatizador: { historico: @climatizador.historico, temperatura: @climatizador.temperatura, usuario_id: @climatizador.usuario_id }
     assert_redirected_to climatizador_path(assigns(:climatizador))
   end
 

@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Temperatura</th>
+      <th>Usuario</th>
       <th>Historico</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +16,7 @@
     <% @climatizadors.each do |climatizador| %>
       <tr>
         <td><%= climatizador.temperatura %></td>
+        <td><%= climatizador.usuario_id %></td>
         <td><%= climatizador.historico %></td>
         <td><%= link_to 'Show', climatizador %></td>
         <td><%= link_to 'Edit', edit_climatizador_path(climatizador) %></td>

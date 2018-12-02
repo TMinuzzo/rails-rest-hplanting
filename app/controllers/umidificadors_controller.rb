@@ -1,7 +1,7 @@
 class UmidificadorsController < ApplicationController
   before_action :set_umidificador, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
-  
+
   # GET /umidificadors
   # GET /umidificadors.json
   def index
@@ -90,6 +90,6 @@ class UmidificadorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def umidificador_params
-      params.require(:umidificador).permit(:umidade, :historico)
+      params.require(:umidificador).permit(:umidade, :usuario_id, :historico)
     end
 end

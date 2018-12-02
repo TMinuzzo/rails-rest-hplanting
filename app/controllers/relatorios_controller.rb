@@ -64,20 +64,21 @@ class RelatoriosController < ApplicationController
 
   def monta_relatorio
 
-		@climatizador = Climatizador.find(params[:usuario_id])
-		@umidificador = Umidificador.find(params[:usuario_id])
+		@climatizador = Climatizador.where(usuario_id: params[:usuario_id]).first
+		@umidificador = Umidificador.where(usuario_id: params[:usuario_id]).first
     puts "ENTROU NO MONTA RELATORIO"
     @climatizador_relatorio = ""
     @umidificador_relatorio = ""
     if @climatizador
-		  @climatizador_relatorio = "\"climatizador\":" << "[" << @climatizador[:historico] << "]"
+		  @climatizador_relatorio = "\"climatizador\":" + "[" + @climatizador[:historico] + "]"
 		end
     if @umidificador
-      @umidificador_relatorio = "\"umidificador\":" << "[" << @umidificador[:historico] << "]"
+      @umidificador_relatorio = "\"umidificador\":" + "[" + @umidificador[:historico] + "]"
     end
-		@relatorio_total = "{" << @climatizador_relatorio << "," << @umidificador_relatorio < "}"
+		@relatorio_total = "{" + @climatizador_relatorio + "," + @umidificador_relatorio + "}"
 
-    render json: @relatorio_total
+    
+    #render json: @relatorio_total
 		return @relatorio_total
   end
 

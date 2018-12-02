@@ -90,6 +90,6 @@ class ClimatizadorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def climatizador_params
-      params.require(:climatizador).permit(:temperatura, :historico)
+      params.require(:climatizador).permit(:temperatura, :usuario_id, :historico)
     end
 end

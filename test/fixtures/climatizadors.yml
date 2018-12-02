@@ -2,8 +2,10 @@
 
 one:
   temperatura: 1.5
+  usuario_id: 1
   historico: MyText
 
 two:
   temperatura: 1.5
+  usuario_id: 1
   historico: MyText

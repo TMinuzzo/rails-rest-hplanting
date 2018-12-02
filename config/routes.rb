@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :climatizadors
+  resources :umidificadors
   resources :usuarios
   resources :relatorios
-  resources :umidificadors
-  resources :climatizadors
 
   get 'relatorio/:usuario_id' => 'relatorios#monta_relatorio'
 
